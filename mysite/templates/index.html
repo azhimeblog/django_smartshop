@@ -1,0 +1,53 @@
+{% extends "base.html" %} 
+{% block content %}
+<style>
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 18px;
+        background-color: #fdfdfd;
+    }
+    
+    .head_text {
+        color: white;
+    }
+    
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+</style>
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white"> HOMEPRO PRODUCTHACK </h3>
+                    <p class="text-light"> EZUPDATE WITH BIZDEV &nbsp
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <!-- Blog Entries Column -->
+        <div class="col-md-8 mt-3 left">
+            {% for product in product_list %}
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title">{{ product.productname}}</h2>
+                    <img src=" {{product.img}} " hight="200px" width="200px">
+                    <p class="card-text text-muted h6"> SKU: {{ product.partnumber }}</p>
+                    <p class="card-text">{{ product.detail|slice:":200" }}</p>
+                    <a href="{{product.link}}" class="btn btn-primary">สั่งซื้อเลย &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+    </div>
+</div>
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}
+{%endblock%}
